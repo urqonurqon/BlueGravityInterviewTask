@@ -36,7 +36,7 @@ public class ItemController : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 		{
 			UpdateStackText(item.StackSize);
 			item.OnStackSizeChanged += UpdateStackText;
-			
+
 		}
 		else
 		{
@@ -86,12 +86,14 @@ public class ItemController : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 		{
 
 			transform.SetParent(BeginDragParent);
+			IsSplittingStack = false;
 			return;
 		}
 
-		if (IsSplittingStack)
+		if (IsSplittingStack && transform.parent != BeginDragParent)
 		{
 			OnStackSplit?.Invoke(item, BeginDragParent.GetComponent<ItemSlotController>(), Mathf.CeilToInt((float)_splittingStackSize / 2));
+
 			IsSplittingStack = false;
 		}
 

@@ -17,6 +17,12 @@ public class ItemSlotController : MonoBehaviour, IDropHandler {
 	public virtual void OnDrop(PointerEventData eventData)
 	{
 		var itemController = eventData.pointerDrag.GetComponent<ItemController>();
+		if (itemController.BeginDragParent == transform)
+		{
+			itemController.transform.SetParent(itemController.BeginDragParent);
+			itemController.IsSplittingStack = false;
+			return;
+		}
 		if (transform.childCount == 0)
 		{
 			if (itemController.IsSplittingStack && itemController.BeginDragParent != transform)
