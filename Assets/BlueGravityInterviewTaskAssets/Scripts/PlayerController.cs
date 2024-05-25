@@ -4,15 +4,28 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
-	[SerializeField] private float _speed = 5f;
+
+	public Player Player;
+
+
+	[SerializeField] private CanvasGroup _inventoryCG;
 
 	private Vector3 _direction;
 	private Animator _animator;
 
+	private bool _inventoryActive;
+	
 
 	private void Awake()
 	{
 		_animator = GetComponent<Animator>();
+
+		ShowInventory(false, true);
+	}
+
+	private void ShowInventory(bool show, bool instant = false)
+	{
+		_inventoryCG.FadeCanvasGroup(show, instant ? 0 : 0.5f);
 	}
 
 	private void Update()
@@ -22,11 +35,17 @@ public class PlayerController : MonoBehaviour {
 		_animator.SetFloat("Horizontal", _direction.x);
 		_animator.SetFloat("Vertical", _direction.y);
 		_animator.SetFloat("Speed", _direction.magnitude);
+
+		if (Input.GetKeyDown(KeyCode.Tab))
+		{
+			_inventoryActive = !_inventoryActive;
+			ShowInventory(_inventoryActive);
+		}
 	}
 
 	private void FixedUpdate()
 	{
-		transform.position += _direction * Time.fixedDeltaTime * _speed;
+		transform.position += _direction * Time.fixedDeltaTime * Player.Speed;
 	}
 
 }
