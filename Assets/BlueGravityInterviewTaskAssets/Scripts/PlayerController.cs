@@ -24,7 +24,6 @@ public class PlayerController : MonoBehaviour {
 
 	private bool _inventoryActive;
 
-
 	private void Awake()
 	{
 		_animator = GetComponent<Animator>();
@@ -56,9 +55,10 @@ public class PlayerController : MonoBehaviour {
 	private void Update()
 	{
 		_direction = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), 0);
-
+		if (_direction.x > 0 && transform.localScale.x<0) transform.localScale=new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+		if (_direction.x < 0 && transform.localScale.x>0) transform.localScale=new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
 		_animator.SetFloat("Horizontal", _direction.x);
-		_animator.SetFloat("Vertical", _direction.y);
+		//_animator.SetFloat("Vertical", _direction.y);
 		_animator.SetFloat("Speed", _direction.magnitude);
 
 		if (Input.GetKeyDown(KeyCode.Tab))
