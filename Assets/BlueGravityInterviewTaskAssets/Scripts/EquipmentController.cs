@@ -6,9 +6,9 @@ using UnityEngine;
 public class EquipmentController : InventoryController
 {
 
-	public override void Start()
+	public override void Init()
 	{
-		_inventory = new Inventory(transform.childCount);
-		_inventory.ItemSlotControllers = GetComponentsInChildren<ItemSlotController>();
+		Inventory = new Inventory(transform.childCount);
+		AssignItemSlots(transform);
 	}
 }

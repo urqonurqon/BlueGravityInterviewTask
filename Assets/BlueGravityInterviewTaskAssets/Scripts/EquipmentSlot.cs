@@ -5,7 +5,9 @@ using UnityEngine;
 
 [Serializable]
 public class EquipmentSlot : ItemSlot {
-	public EquipmentSlot(Item item, EquipmentSlotType slotType) : base(item, slotType)
+
+	public EquipmentSlotType SlotType;
+	public EquipmentSlot(Item item, EquipmentSlotType slotType)
 	{
 		Item = item;
 		SlotType = slotType;

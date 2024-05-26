@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ManaPotion
   m_EditorClassIdentifier: 
   ID: 1
-  Description: 
-  Sprite: {fileID: 0}
-  Value: 0
-  MaxStackSize: 0
+  Description: Restores Mana Points
+  Sprite: {fileID: 797887608, guid: 4757c7024da638a4ca51f71ddbd8152e, type: 3}
+  GoldValue: 6
+  MaxStackSize: 10

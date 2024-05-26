@@ -37,9 +37,13 @@ public class Player {
 	}
 	private int _goldAmount;
 
-	public Player(List<Stat> stats, int goldAmount)
+	public Inventory Inventory { get; set; }
+	public Inventory Equipment { get; set; }
+
+	public Player(List<Stat> stats, int goldAmount, float speed)
 	{
 		Stats = stats;
 		GoldAmount = goldAmount;
+		Speed = speed;
 	}
 }

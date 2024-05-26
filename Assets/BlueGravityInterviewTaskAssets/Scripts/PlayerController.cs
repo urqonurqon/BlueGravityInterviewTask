@@ -9,8 +9,11 @@ public class PlayerController : MonoBehaviour {
 
 
 	public static Player Player;
+	[SerializeField] private InventoryController _inventoryController;
+	[SerializeField] private EquipmentController _equipmentController;
 	[SerializeField] private List<Stat> _startingStats;
 	[SerializeField] private int _startingGold;
+	[SerializeField] private float _startingSpeed;
 
 
 	[SerializeField] private TMP_Text _goldAmountText;
@@ -25,8 +28,13 @@ public class PlayerController : MonoBehaviour {
 	private void Awake()
 	{
 		_animator = GetComponent<Animator>();
-		Player = new Player(_startingStats, _startingGold);
+		Player = new Player(_startingStats, _startingGold, _startingSpeed);
 		Player.OnGoldAmountChanged += GoldAmountChanged;
+		_inventoryController.Init();
+		_equipmentController.Init();
+		Player.Inventory = _inventoryController.Inventory;
+		Player.Equipment = _equipmentController.Inventory;
+
 		GoldAmountChanged(Player.GoldAmount);
 
 		ShowInventory(false, true);

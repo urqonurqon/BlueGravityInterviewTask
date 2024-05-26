@@ -1,18 +1,30 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shopkeeper : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+public class Shopkeeper {
+	public Action<int> OnGoldAmountChanged;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	public int GoldAmount
+	{
+		get
+		{
+			return _goldAmount;
+		}
+		set
+		{
+			_goldAmount = value;
+			OnGoldAmountChanged?.Invoke(value);
+		}
+	}
+	private int _goldAmount;
+
+	public Inventory Inventory { get; set; }
+
+	public Shopkeeper(Inventory inventory, int goldAmount)
+	{
+		Inventory = inventory;
+		_goldAmount = goldAmount;
+	}
 }
