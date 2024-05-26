@@ -6,8 +6,8 @@ using UnityEngine;
 [Serializable]
 public enum StatType
 {
-   Strength,
-   Agility,
-   Intelligence,
-   Stamina
+   STR,
+   AGI,
+   INT,
+   STA
 }

@@ -15,17 +15,13 @@ public class InventoryController : MonoBehaviour {
 
 
 
-	public virtual void Awake()
+	public virtual void Start()
 	{
 
 
 		_inventory = new Inventory(transform.childCount);
 		_inventory.ItemSlotControllers = GetComponentsInChildren<ItemSlotController>();
-		for (int i = 0; i < _inventory.ItemSlotControllers.Length; i++)
-		{
-			var itemSlot = _inventory.ItemSlotControllers[i].ItemSlot;
-			//itemSlot=new ItemSlot()
-		}
+	
 		InstantiateStartingItems();
 	}
 

@@ -1,27 +1,44 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using TMPro;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
 
-	public Player Player;
+	public static Player Player;
+	[SerializeField] private List<Stat> _startingStats;
+	[SerializeField] private int _startingGold;
 
 
+	[SerializeField] private TMP_Text _goldAmountText;
 	[SerializeField] private CanvasGroup _inventoryCG;
 
 	private Vector3 _direction;
 	private Animator _animator;
 
 	private bool _inventoryActive;
-	
+
 
 	private void Awake()
 	{
 		_animator = GetComponent<Animator>();
+		Player = new Player(_startingStats, _startingGold);
+		Player.OnGoldAmountChanged += GoldAmountChanged;
+		GoldAmountChanged(Player.GoldAmount);
 
 		ShowInventory(false, true);
 	}
+
+	private void GoldAmountChanged(int amount)
+	{
+		_goldAmountText.text = amount.ToString();
+
+	}
+
+
 
 	private void ShowInventory(bool show, bool instant = false)
 	{
