@@ -5,5 +5,5 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
 
-public static List<Shopkeeper> Shopkeepers = new List<Shopkeeper>();
+	public static Shopkeeper CurrentShopkeeper;
 }

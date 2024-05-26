@@ -19,7 +19,6 @@ public class ShopkeeperController : InventoryController
 		ShowInventory(false);
 		Inventory = new Inventory(_canvasInventory.childCount);
 		Shopkeeper = new Shopkeeper(Inventory, _startingShopGold);
-		GameController.Shopkeepers.Add(Shopkeeper);
 		Shopkeeper.OnGoldAmountChanged += GoldAmountChanged;
 		SetStartingItemsInInventory();
 	}
@@ -32,6 +31,7 @@ public class ShopkeeperController : InventoryController
 
 	public override void Init()
 	{
+		GameController.CurrentShopkeeper = Shopkeeper;
 		GoldAmountChanged(Shopkeeper.GoldAmount);
 		AssignItemSlots(_canvasInventory);
 

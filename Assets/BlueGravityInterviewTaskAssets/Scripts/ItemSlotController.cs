@@ -11,7 +11,6 @@ public class ItemSlotController : MonoBehaviour, IDropHandler {
 	public ItemSlot ItemSlot;
 
 
-
 	public virtual void OnDrop(PointerEventData eventData)
 	{
 		var itemController = eventData.pointerDrag.GetComponent<ItemController>();
@@ -36,24 +35,8 @@ public class ItemSlotController : MonoBehaviour, IDropHandler {
 
 			if (itemController.BeginDragParent.GetComponent<ItemSlotController>().transform.parent.tag != transform.parent.tag)
 			{
-				Shopkeeper shopkeeper = null;
-				var breakLoop = false;
-				for (int i = 0; i < GameController.Shopkeepers.Count; i++)
-				{
-					shopkeeper = GameController.Shopkeepers[i];
-					if (!breakLoop)
-					{
-						for (int j = 0; j < shopkeeper.Inventory.ItemSlots.Length; j++)
-						{
-							var shopkeeperItemSlot = shopkeeper.Inventory.ItemSlots[j];
-							if (shopkeeperItemSlot.Item == itemController.Item)
-							{
-								breakLoop = true;
-								break;
-							}
-						}
-					}
-				}
+				Shopkeeper shopkeeper = GameController.CurrentShopkeeper;
+
 				int cost = itemController.Item.ItemSO.GoldValue * itemController.Item.StackSize;
 				if (transform.parent.tag == "PlayerInventory")
 				{
@@ -64,7 +47,10 @@ public class ItemSlotController : MonoBehaviour, IDropHandler {
 					}
 					else
 					{
-
+						if (itemController.Item.ItemSO is EquipmentSO && this is EquipmentSlotController)
+						{
+							ItemEquiped(itemController, false);
+						}
 						itemController.Item.StackSize = originalStackSize;
 
 						return;
@@ -88,10 +74,7 @@ public class ItemSlotController : MonoBehaviour, IDropHandler {
 			}
 
 
-			//	else if (itemController.IsSplittingStack)
-			//	{
-			//		itemController.IsSplittingStack = false;
-			//	}
+
 
 			eventData.pointerDrag.transform.SetParent(transform);
 			eventData.pointerDrag.transform.localPosition = Vector3.zero;
@@ -108,26 +91,15 @@ public class ItemSlotController : MonoBehaviour, IDropHandler {
 		}
 		else if (itemController.Item.ItemSO == ItemSlot.Item.ItemSO && itemController.Item.ItemSO is ConsumableSO)
 		{
+			if (itemController.IsSplittingStack && itemController.BeginDragParent != transform)
+			{
+				if (ItemSlot.Item.StackSize+ Mathf.FloorToInt((float)itemController.Item.StackSize / 2)<=((ConsumableSO)ItemSlot.Item.ItemSO).MaxStackSize)
+				itemController.Item.StackSize = Mathf.FloorToInt((float)itemController.Item.StackSize / 2);
+			}
 			if (itemController.BeginDragParent.GetComponent<ItemSlotController>().transform.parent.tag != transform.parent.tag)
 			{
-				Shopkeeper shopkeeper = null;
-				var breakLoop = false;
-				for (int i = 0; i < GameController.Shopkeepers.Count; i++)
-				{
-					shopkeeper = GameController.Shopkeepers[i];
-					if (!breakLoop)
-					{
-						for (int j = 0; j < shopkeeper.Inventory.ItemSlots.Length; j++)
-						{
-							var shopkeeperItemSlot = shopkeeper.Inventory.ItemSlots[j];
-							if (shopkeeperItemSlot.Item == itemController.Item)
-							{
-								breakLoop = true;
-								break;
-							}
-						}
-					}
-				}
+				Shopkeeper shopkeeper = GameController.CurrentShopkeeper;
+
 				int cost = itemController.Item.ItemSO.GoldValue * itemController.Item.StackSize;
 				if (transform.parent.tag == "PlayerInventory")
 				{
@@ -161,7 +133,11 @@ public class ItemSlotController : MonoBehaviour, IDropHandler {
 			if (consumable.MaxStackSize >= itemController.Item.StackSize + ItemSlot.Item.StackSize)
 			{
 				ItemSlot.Item.StackSize += itemController.Item.StackSize;
-				Destroy(itemController.gameObject);
+				if (!itemController.IsSplittingStack)
+				{
+					Destroy(itemController.gameObject);
+
+				}
 
 			}
 

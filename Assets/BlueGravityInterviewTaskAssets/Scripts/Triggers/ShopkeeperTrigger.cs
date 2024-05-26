@@ -43,7 +43,8 @@ public class ShopkeeperTrigger : MonoBehaviour {
 		if (collision.gameObject.tag == "Player")
 		{
 			_isInTrigger = false;
-			_myInventoryCG.FadeCanvasGroup(false, .5f);
+			if (_shopkeeperInventoryCG.alpha > 0)
+				_myInventoryCG.FadeCanvasGroup(false, .5f);
 			_shopkeeperInventoryCG.FadeCanvasGroup(false, .5f);
 		}
 	}

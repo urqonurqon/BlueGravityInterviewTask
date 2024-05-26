@@ -86,6 +86,11 @@ public class ItemController : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 		{
 
 			transform.SetParent(BeginDragParent);
+			if (IsSplittingStack && (Mathf.CeilToInt((float)_splittingStackSize / 2)+ eventData.pointerEnter.GetComponent<ItemController>().Item.StackSize) <= ((ConsumableSO)Item.ItemSO).MaxStackSize)
+			{
+				Item.StackSize = Mathf.CeilToInt((float)_splittingStackSize / 2);
+			}
+
 			IsSplittingStack = false;
 			return;
 		}
@@ -97,16 +102,6 @@ public class ItemController : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 			IsSplittingStack = false;
 		}
 
-		//if (eventData.pointerEnter != null && eventData.pointerEnter.GetComponent<ItemSlot>() != null && IsSplittingStack && BeginDragParent != transform.parent)
-		//{
-		//	IsSplittingStack = false;
-		//}
-		//else if (IsSplittingStack)
-		//{
-		//	IsSplittingStack = false;
-		//}
-
-		//if (eventData.pointerEnter == null || eventData.pointerEnter.GetComponent<ItemSlot>() == null || eventData.pointerEnter.GetComponent<ItemSlot>().ItemController != eventData.pointerDrag.GetComponent<ItemController>())
 
 
 	}
