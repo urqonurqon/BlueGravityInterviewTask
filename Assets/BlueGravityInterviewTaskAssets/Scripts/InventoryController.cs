@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,7 +9,6 @@ public class InventoryController : MonoBehaviour {
 	[SerializeField] protected GameObject _itemPrefab;
 	[SerializeField] protected List<ItemSO> _startingItems;
 
-	//protected List<GameObject> _itemGOs = new List<GameObject>();
 
 	protected ItemSlotController[] _slotControllers;
 
@@ -30,15 +27,12 @@ public class InventoryController : MonoBehaviour {
 	protected void AssignItemSlots(Transform transform)
 	{
 		_slotControllers = transform.GetComponentsInChildren<ItemSlotController>();
-		//ItemSlot[] itemSlots = new ItemSlot[_slotControllers.Length];
 		for (int i = 0; i < Inventory.ItemSlots.Length; i++)
 		{
 			var itemSlot = Inventory.ItemSlots[i];
 			_slotControllers[i].ItemSlot = itemSlot;
-			//itemSlots[i] = itemSlot;
 
 		}
-		//Inventory.ItemSlots = itemSlots;
 
 	}
 
@@ -55,7 +49,6 @@ public class InventoryController : MonoBehaviour {
 			var item = new Item(itemSO, amount);
 			var itemSlot = Inventory.ItemSlots[i];
 			itemSlot.Item = item;
-			//_slotControllers[i].ItemSlot = itemSlot;
 		}
 	}
 
@@ -79,7 +72,6 @@ public class InventoryController : MonoBehaviour {
 			var itemSlot= Inventory.ItemSlots[i];
 			if (itemSlot.Item == null) continue;
 			var itemGO = Instantiate(_itemPrefab, _slotControllers[i].transform);
-			//_itemGOs.Add(itemGO);
 
 			var itemController = itemGO.GetComponent<ItemController>();
 
@@ -96,18 +88,12 @@ public class InventoryController : MonoBehaviour {
 	protected void StackSplit(Item item, ItemSlotController itemSlotController, int amount)
 	{
 		var itemGO = Instantiate(_itemPrefab, itemSlotController.transform);
-		//_itemGOs.Add(itemGO);
 
 		var itemController = itemGO.GetComponent<ItemController>();
-		//itemController.Item = new Item(item.ItemSO);
-		//itemController.Item.StackSize = amount;
 		item = new Item(item.ItemSO, amount);
 		itemController.Initialize(item);
 		itemController.OnStackSplit += StackSplit;
 		itemSlotController.ItemSlot.Item = item;
-
-		//slotTransform.GetComponent<ItemSlot>().ItemController = itemController;
-
 
 	}
 }

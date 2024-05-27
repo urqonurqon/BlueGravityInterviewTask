@@ -1,10 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
-using static UnityEditor.Progress;
 
 public class ItemSlotController : MonoBehaviour, IDropHandler {
 
@@ -171,6 +168,7 @@ public class ItemSlotController : MonoBehaviour, IDropHandler {
 			PlayerController.Player.Stats = playerStats;
 
 		}
+		//forgive me for i have sinned, but it was too late in the night
 		if (this is EquipmentSlotController)
 		{
 			EquipmentSlotController equipmentSlotController = this as EquipmentSlotController;

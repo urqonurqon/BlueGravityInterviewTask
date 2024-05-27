@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -92,11 +90,17 @@ public class ItemController : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
 		_cg.blocksRaycasts = true;
 		Item item;
 		ItemSlotController itemSlotController = null;
-		//if (eventData.pointerDrag.GetComponent<ItemController>() != null)
 		item = eventData.pointerDrag.GetComponent<ItemController>().Item;
 		if (eventData.pointerEnter != null && eventData.pointerEnter.GetComponent<ItemSlotController>() != null)
 			itemSlotController = eventData.pointerEnter.GetComponent<ItemSlotController>();
-		if (eventData.pointerEnter == null || itemSlotController == null || itemSlotController.ItemSlot.Item != item)
+		if (eventData.pointerEnter == null || itemSlotController == null){
+			transform.SetParent(BeginDragParent);
+		
+
+			IsSplittingStack = false;
+			return;
+		}
+		if  (itemSlotController.ItemSlot.Item != item)
 		{
 
 			transform.SetParent(BeginDragParent);
