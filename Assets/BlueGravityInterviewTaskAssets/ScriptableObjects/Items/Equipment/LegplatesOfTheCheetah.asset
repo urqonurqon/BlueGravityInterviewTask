@@ -12,7 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c724aaeb238eba4b84e2e3684baf4d5, type: 3}
   m_Name: LegplatesOfTheCheetah
   m_EditorClassIdentifier: 
-  ID: 0
-  Description: 
-  Texture: {fileID: 0}
-  Value: 0
+  ID: 15
+  Description: Agility Legs
+  Sprite: {fileID: 734116476, guid: 77453c54f50a48548bf49041037305a0, type: 3}
+  GoldValue: 75
+  Stats:
+  - Type: 1
+    Amount: 3
+  - Type: 3
+    Amount: 3
+  SlotType: 2
+  WorldSprite:
+  - {fileID: 21300000, guid: 27fe921d9d4bdb24eb91cc1e96a04f02, type: 3}
+  - {fileID: 21300000, guid: 925993f8892fa474c904d0e9a8f67cee, type: 3}
+  - {fileID: 21300000, guid: 321cb2880c53eb743987a6a94741e4f0, type: 3}

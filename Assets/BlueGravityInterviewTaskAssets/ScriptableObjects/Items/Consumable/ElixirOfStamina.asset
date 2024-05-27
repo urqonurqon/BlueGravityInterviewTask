@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb8862a2d96cfa44fbfd627185e7e8eb, type: 3}
   m_Name: ElixirOfStamina
   m_EditorClassIdentifier: 
-  ID: 0
-  Description: 
-  Texture: {fileID: 0}
-  Value: 0
-  StartingStackSize: 0
-  MaxStackSize: 0
+  ID: 3
+  Description: Increases Stamina
+  Sprite: {fileID: 21300000, guid: 0e84f4b595fa11e46ad8f9e32065c2e5, type: 3}
+  GoldValue: 15
+  MaxStackSize: 5
+  Stat:
+    Type: 3
+    Amount: 1

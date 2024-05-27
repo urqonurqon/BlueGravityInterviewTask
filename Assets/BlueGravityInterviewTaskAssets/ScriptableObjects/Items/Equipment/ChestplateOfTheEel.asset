@@ -12,7 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c724aaeb238eba4b84e2e3684baf4d5, type: 3}
   m_Name: ChestplateOfTheEel
   m_EditorClassIdentifier: 
-  ID: 0
-  Description: 
-  Texture: {fileID: 0}
-  Value: 0
+  ID: 10
+  Description: Intelligence Chest
+  Sprite: {fileID: -729478961, guid: a9735c547f7284d49bf6463652f4b8da, type: 3}
+  GoldValue: 75
+  Stats:
+  - Type: 2
+    Amount: 3
+  - Type: 3
+    Amount: 3
+  SlotType: 1
+  WorldSprite:
+  - {fileID: 21300000, guid: 124013dbba7f284489ac16156c930131, type: 3}

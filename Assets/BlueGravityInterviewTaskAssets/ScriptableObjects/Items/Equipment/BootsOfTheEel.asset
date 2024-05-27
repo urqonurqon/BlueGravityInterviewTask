@@ -12,11 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c724aaeb238eba4b84e2e3684baf4d5, type: 3}
   m_Name: BootsOfTheEel
   m_EditorClassIdentifier: 
-  ID: 3
+  ID: 7
   Description: Intelligence Boots
-  Sprite: {fileID: 21300152, guid: 29c9cded5e558164aaf8c9bf08aa1510, type: 3}
-  GoldValue: 65
+  Sprite: {fileID: -562075426, guid: 181281a29786a8f4d8567057ff8b1924, type: 3}
+  GoldValue: 50
   Stats:
   - Type: 2
-    Amount: 3
+    Amount: 2
+  - Type: 3
+    Amount: 2
   SlotType: 3
+  WorldSprite:
+  - {fileID: 21300000, guid: 7b9383d96cedcd9409cc1f3d6d355cf6, type: 3}
+  - {fileID: 21300000, guid: 6ebc4c8acffeeca41934c2f2393a45be, type: 3}

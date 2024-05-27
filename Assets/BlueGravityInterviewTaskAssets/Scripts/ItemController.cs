@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ItemController : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IBeginDragHandler, IEndDragHandler, IDragHandler {
+public class ItemController : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler, IPointerClickHandler {
 
 	public Action<Item, ItemSlotController, int> OnStackSplit;
 
@@ -27,6 +27,20 @@ public class ItemController : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 		_cg = GetComponent<CanvasGroup>();
 		_canvasTransform = GetComponentInParent<Canvas>().transform;
 		_stackSize = GetComponentInChildren<TMP_Text>();
+	}
+
+	
+	public void OnPointerClick(PointerEventData eventData)
+	{
+		if (eventData.button==PointerEventData.InputButton.Right)
+		{
+			if (GetComponentInParent<InventoryController>() != null)
+			{
+				Item.Use();
+				if (Item.StackSize == 0)
+					Destroy(gameObject);
+			}
+		}
 	}
 
 	public void Initialize(Item item)
@@ -86,7 +100,7 @@ public class ItemController : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 		{
 
 			transform.SetParent(BeginDragParent);
-			if (IsSplittingStack && (Mathf.CeilToInt((float)_splittingStackSize / 2)+ eventData.pointerEnter.GetComponent<ItemController>().Item.StackSize) <= ((ConsumableSO)Item.ItemSO).MaxStackSize)
+			if (IsSplittingStack && (Mathf.CeilToInt((float)_splittingStackSize / 2) + eventData.pointerEnter.GetComponent<ItemController>().Item.StackSize) <= ((ConsumableSO)Item.ItemSO).MaxStackSize)
 			{
 				Item.StackSize = Mathf.CeilToInt((float)_splittingStackSize / 2);
 			}
@@ -106,13 +120,5 @@ public class ItemController : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
 	}
 
-	public void OnPointerEnter(PointerEventData eventData)
-	{
 
-	}
-
-	public void OnPointerExit(PointerEventData eventData)
-	{
-
-	}
 }

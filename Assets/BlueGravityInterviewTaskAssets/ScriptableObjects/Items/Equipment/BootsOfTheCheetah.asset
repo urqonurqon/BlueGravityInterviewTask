@@ -12,11 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c724aaeb238eba4b84e2e3684baf4d5, type: 3}
   m_Name: BootsOfTheCheetah
   m_EditorClassIdentifier: 
-  ID: 2
+  ID: 6
   Description: Agility Boots
-  Sprite: {fileID: 21300146, guid: c3a40e1c46727b94e959990527f8e7fa, type: 3}
+  Sprite: {fileID: -374336039, guid: 795886630a473b54e980010391bac9a6, type: 3}
   GoldValue: 50
   Stats:
   - Type: 1
     Amount: 2
+  - Type: 3
+    Amount: 2
   SlotType: 3
+  WorldSprite:
+  - {fileID: 21300000, guid: 2932647fff9189e40a62a25143f3f534, type: 3}
+  - {fileID: 21300000, guid: d4a68b40fbf8e4046a2350c31a210fb1, type: 3}

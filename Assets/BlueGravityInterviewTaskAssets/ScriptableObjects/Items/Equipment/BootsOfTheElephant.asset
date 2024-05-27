@@ -12,7 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c724aaeb238eba4b84e2e3684baf4d5, type: 3}
   m_Name: BootsOfTheElephant
   m_EditorClassIdentifier: 
-  ID: 0
-  Description: 
-  Texture: {fileID: 0}
-  Value: 0
+  ID: 8
+  Description: Strength Boots
+  Sprite: {fileID: -44776353, guid: 4a52e948531fd7348bc7df25ec4bf831, type: 3}
+  GoldValue: 50
+  Stats:
+  - Type: 0
+    Amount: 2
+  - Type: 3
+    Amount: 2
+  SlotType: 3
+  WorldSprite:
+  - {fileID: 21300000, guid: e97e92bbd1093e044ab575af7f9999e9, type: 3}
+  - {fileID: 21300000, guid: debc4edcc117abe4f8600caca642318f, type: 3}

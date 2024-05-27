@@ -48,9 +48,9 @@ public class InventoryController : MonoBehaviour {
 		{
 			var itemSO= _startingItems[i];
 			var amount = 1;
-			if (itemSO.ID == 0)
+			if (itemSO is ConsumableSO)
 			{
-				amount = 3;
+				amount = ((ConsumableSO)itemSO).MaxStackSize;
 			}
 			var item = new Item(itemSO, amount);
 			var itemSlot = Inventory.ItemSlots[i];

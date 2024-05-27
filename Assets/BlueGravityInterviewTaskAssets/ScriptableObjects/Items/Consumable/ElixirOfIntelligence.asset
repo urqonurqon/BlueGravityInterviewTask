@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb8862a2d96cfa44fbfd627185e7e8eb, type: 3}
   m_Name: ElixirOfIntelligence
   m_EditorClassIdentifier: 
-  ID: 0
-  Description: 
-  Texture: {fileID: 0}
-  Value: 0
-  StartingStackSize: 0
-  MaxStackSize: 0
+  ID: 4
+  Description: Increases Intelligence
+  Sprite: {fileID: 21300000, guid: 259b17bff9d32124ba159b020b07e7c8, type: 3}
+  GoldValue: 20
+  MaxStackSize: 5
+  Stat:
+    Type: 2
+    Amount: 1

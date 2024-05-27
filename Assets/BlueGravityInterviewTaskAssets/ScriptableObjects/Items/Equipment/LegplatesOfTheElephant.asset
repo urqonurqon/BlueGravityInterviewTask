@@ -12,7 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c724aaeb238eba4b84e2e3684baf4d5, type: 3}
   m_Name: LegplatesOfTheElephant
   m_EditorClassIdentifier: 
-  ID: 0
-  Description: 
-  Texture: {fileID: 0}
-  Value: 0
+  ID: 17
+  Description: Strength Legs
+  Sprite: {fileID: 2036944101, guid: 27745d232e9397042bac05ad21cb2db5, type: 3}
+  GoldValue: 75
+  Stats:
+  - Type: 0
+    Amount: 3
+  - Type: 3
+    Amount: 3
+  SlotType: 2
+  WorldSprite:
+  - {fileID: 21300000, guid: 4807dc8cba98f89409729f6aac2945a7, type: 3}
+  - {fileID: 21300000, guid: 0038d4b0669b99846b9be93321f9d7a4, type: 3}
+  - {fileID: 21300000, guid: e374a8e2ee1ae6b4c938a59399b39ffb, type: 3}

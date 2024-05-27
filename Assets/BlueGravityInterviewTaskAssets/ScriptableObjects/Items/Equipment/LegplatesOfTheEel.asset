@@ -12,7 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c724aaeb238eba4b84e2e3684baf4d5, type: 3}
   m_Name: LegplatesOfTheEel
   m_EditorClassIdentifier: 
-  ID: 0
-  Description: 
-  Texture: {fileID: 0}
-  Value: 0
+  ID: 16
+  Description: Intelligence Legs
+  Sprite: {fileID: -1156392653, guid: 73c0e4d99acee214fa3b98795ea1a29c, type: 3}
+  GoldValue: 75
+  Stats:
+  - Type: 2
+    Amount: 3
+  - Type: 3
+    Amount: 3
+  SlotType: 2
+  WorldSprite:
+  - {fileID: 21300000, guid: 0c6412d95175c2b40bd9a27f7d1fa096, type: 3}
+  - {fileID: 21300000, guid: 5cb065829e2f3084cb4dd46e0f41fb30, type: 3}
+  - {fileID: 21300000, guid: 3cf87d879b214174ea666233f56d905e, type: 3}

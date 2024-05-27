@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb8862a2d96cfa44fbfd627185e7e8eb, type: 3}
   m_Name: ElixirOfAgility
   m_EditorClassIdentifier: 
-  ID: 0
-  Description: 
-  Texture: {fileID: 0}
-  Value: 0
-  StartingStackSize: 0
-  MaxStackSize: 0
+  ID: 5
+  Description: Gives Agility
+  Sprite: {fileID: 21300000, guid: 093790fe9fca6fb4cbf7d5ed65cb278a, type: 3}
+  GoldValue: 20
+  MaxStackSize: 5
+  Stat:
+    Type: 1
+    Amount: 1

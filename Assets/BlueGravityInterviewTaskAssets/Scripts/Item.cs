@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -26,5 +27,17 @@ public class Item  {
 	{
 		ItemSO = itemSO;
 		_stackSize = stackSize;
+	}
+
+	public void Use()
+	{
+		if (ItemSO is ConsumableSO && _stackSize > 0)
+		{
+			StackSize--;
+			var playerStats = new List<Stat>(PlayerController.Player.Stats);
+
+			playerStats.First(s => s.Type == ((ConsumableSO)ItemSO).Stat.Type).Amount += ((ConsumableSO)ItemSO).Stat.Amount;
+			PlayerController.Player.Stats = playerStats;
+		}
 	}
 }

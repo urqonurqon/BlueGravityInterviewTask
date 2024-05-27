@@ -8,4 +8,6 @@ using System;
 public class ConsumableSO : ItemSO {
 
 	public int MaxStackSize;
+
+	public Stat Stat;
 }

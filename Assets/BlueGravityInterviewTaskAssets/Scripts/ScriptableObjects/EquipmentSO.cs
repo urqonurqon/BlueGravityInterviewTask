@@ -9,4 +9,5 @@ public class EquipmentSO : ItemSO
 {
 	public List<Stat> Stats;
 	public EquipmentSlotType SlotType;
+	public Sprite[] WorldSprite;
 }

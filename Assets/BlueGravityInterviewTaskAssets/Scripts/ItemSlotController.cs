@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 public class ItemSlotController : MonoBehaviour, IDropHandler {
 
@@ -93,8 +94,8 @@ public class ItemSlotController : MonoBehaviour, IDropHandler {
 		{
 			if (itemController.IsSplittingStack && itemController.BeginDragParent != transform)
 			{
-				if (ItemSlot.Item.StackSize+ Mathf.FloorToInt((float)itemController.Item.StackSize / 2)<=((ConsumableSO)ItemSlot.Item.ItemSO).MaxStackSize)
-				itemController.Item.StackSize = Mathf.FloorToInt((float)itemController.Item.StackSize / 2);
+				if (ItemSlot.Item.StackSize + Mathf.FloorToInt((float)itemController.Item.StackSize / 2) <= ((ConsumableSO)ItemSlot.Item.ItemSO).MaxStackSize)
+					itemController.Item.StackSize = Mathf.FloorToInt((float)itemController.Item.StackSize / 2);
 			}
 			if (itemController.BeginDragParent.GetComponent<ItemSlotController>().transform.parent.tag != transform.parent.tag)
 			{
@@ -145,7 +146,13 @@ public class ItemSlotController : MonoBehaviour, IDropHandler {
 	}
 
 
-
+	protected void ChangeSprites(SpriteRenderer[] spriteRenderers, Sprite[] sprites)
+	{
+		for (int i = 0; i < spriteRenderers.Length; i++)
+		{
+			spriteRenderers[i].sprite = sprites[i];
+		}
+	}
 
 	protected void ItemEquiped(ItemController itemController, bool isEquiped)
 	{
@@ -162,6 +169,17 @@ public class ItemSlotController : MonoBehaviour, IDropHandler {
 			var playerStat = playerStats.First(s => s.Type == equipment.Stats[i].Type);
 			playerStat.Amount += isEquiped ? equipment.Stats[i].Amount : -equipment.Stats[i].Amount;
 			PlayerController.Player.Stats = playerStats;
+
+		}
+		if (this is EquipmentSlotController)
+		{
+			EquipmentSlotController equipmentSlotController = this as EquipmentSlotController;
+			ChangeSprites(equipmentSlotController._spriteRenderer, ((EquipmentSO)itemController.Item.ItemSO).WorldSprite);
+		}
+		else if (!isEquiped)
+		{
+			EquipmentSlotController equipmentSlotController=itemController.BeginDragParent.GetComponent<EquipmentSlotController>();
+			ChangeSprites(equipmentSlotController._spriteRenderer, equipmentSlotController._startingSprite);
 
 		}
 	}

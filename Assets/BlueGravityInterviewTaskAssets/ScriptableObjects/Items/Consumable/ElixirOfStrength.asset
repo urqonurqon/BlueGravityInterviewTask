@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb8862a2d96cfa44fbfd627185e7e8eb, type: 3}
   m_Name: ElixirOfStrength
   m_EditorClassIdentifier: 
-  ID: 0
-  Description: 
-  Texture: {fileID: 0}
-  Value: 0
-  StartingStackSize: 0
-  MaxStackSize: 0
+  ID: 2
+  Description: Increases Strength
+  Sprite: {fileID: 21300000, guid: df4ed6cb21be53047942a93f14bb6cca, type: 3}
+  GoldValue: 20
+  MaxStackSize: 5
+  Stat:
+    Type: 0
+    Amount: 1

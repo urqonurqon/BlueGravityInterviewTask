@@ -12,7 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c724aaeb238eba4b84e2e3684baf4d5, type: 3}
   m_Name: ChestplateOfTheElephant
   m_EditorClassIdentifier: 
-  ID: 0
-  Description: 
-  Texture: {fileID: 0}
-  Value: 0
+  ID: 11
+  Description: Strength Chest
+  Sprite: {fileID: 1583617760, guid: 949b588035c3b7c48a3a6b9140b38c66, type: 3}
+  GoldValue: 75
+  Stats:
+  - Type: 0
+    Amount: 3
+  - Type: 3
+    Amount: 3
+  SlotType: 1
+  WorldSprite:
+  - {fileID: 21300000, guid: 3d9056df586b6024fbc5b9fee2433eef, type: 3}
