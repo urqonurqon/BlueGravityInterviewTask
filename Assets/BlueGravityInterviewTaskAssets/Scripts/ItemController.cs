@@ -14,17 +14,20 @@ public class ItemController : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
 	[HideInInspector] public bool IsSplittingStack;
 
 	private Image _itemIcon;
-	private Transform _canvasTransform;
+	private Canvas _canvas;
 	private CanvasGroup _cg;
 	private TMP_Text _stackSize;
 	private int _splittingStackSize;
+
+	private RectTransform _rt;
 
 	private void Awake()
 	{
 		_itemIcon = GetComponent<Image>();
 		_cg = GetComponent<CanvasGroup>();
-		_canvasTransform = GetComponentInParent<Canvas>().transform;
+		_canvas = GetComponentInParent<Canvas>();
 		_stackSize = GetComponentInChildren<TMP_Text>();
+		_rt = GetComponent<RectTransform>();
 	}
 
 	
@@ -74,7 +77,7 @@ public class ItemController : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
 		}
 
 		BeginDragParent = transform.parent;
-		transform.SetParent(_canvasTransform);
+		transform.SetParent(_canvas.transform);
 		_cg.blocksRaycasts = false;
 
 
@@ -82,7 +85,11 @@ public class ItemController : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
 
 	public void OnDrag(PointerEventData eventData)
 	{
-		transform.localPosition += (Vector3)eventData.delta;
+		float scaleFactor = _canvas.scaleFactor;
+
+		Vector2 adjustedDelta = eventData.delta / scaleFactor;
+
+		_rt.anchoredPosition += adjustedDelta;
 	}
 
 	public void OnEndDrag(PointerEventData eventData)

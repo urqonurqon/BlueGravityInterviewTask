@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour {
 
 	private void FixedUpdate()
 	{
-		transform.position += _direction * Time.deltaTime * Player.Speed;
+		transform.position += _direction.normalized * Time.deltaTime * Player.Speed;
 		if (_direction.x > 0 && transform.localScale.x < 0) transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
 		if (_direction.x < 0 && transform.localScale.x > 0) transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
 	}
