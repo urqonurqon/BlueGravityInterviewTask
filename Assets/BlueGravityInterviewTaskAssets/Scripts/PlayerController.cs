@@ -52,8 +52,7 @@ public class PlayerController : MonoBehaviour {
 	private void Update()
 	{
 		_direction = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), 0);
-		if (_direction.x > 0 && transform.localScale.x<0) transform.localScale=new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
-		if (_direction.x < 0 && transform.localScale.x>0) transform.localScale=new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+	
 
 		_animator.SetFloat("Horizontal", _direction.x);
 		_animator.SetFloat("Speed", _direction.magnitude);
@@ -67,7 +66,9 @@ public class PlayerController : MonoBehaviour {
 
 	private void FixedUpdate()
 	{
-		transform.position += _direction * Time.fixedDeltaTime * Player.Speed;
+		transform.position += _direction * Time.deltaTime * Player.Speed;
+		if (_direction.x > 0 && transform.localScale.x < 0) transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+		if (_direction.x < 0 && transform.localScale.x > 0) transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
 	}
 
 }
